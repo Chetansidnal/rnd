@@ -1,0 +1,99 @@
+digraph graphname {
+	graph [bb="0,0,812,268",
+		compound=True,
+		rank=same,
+		rankdir=LR,
+		ranksep=0.2
+	];
+	node [label="\N"];
+	subgraph cluster_arm_1 {
+		graph [bb="8,131,488,260",
+			compound=True,
+			label=arm_1,
+			lheight=0.21,
+			lp="248,248.5",
+			lwidth=0.64,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__arm_1_arm_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_arm_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			pos="248,211",
+			shape=box,
+			tooltip="topic:arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			width=6.0833];
+		n__arm_1_gripper_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_gripper_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			pos="248,157",
+			shape=box,
+			tooltip="topic:arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			width=6.4306];
+	}
+	subgraph cluster_joy_node {
+		graph [bb="185,8,311,83",
+			compound=True,
+			label=joy_node,
+			lheight=0.21,
+			lp="248,71.5",
+			lwidth=0.89,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__joy_node		 [URL=_joy_node,
+			height=0.5,
+			label="/joy_node",
+			pos="248,34",
+			shape=ellipse,
+			tooltip="/joy_node",
+			width=1.5165];
+	}
+	t__diagnostics	 [URL=topic_3A_diagnostics,
+		height=0.5,
+		label="/diagnostics",
+		pos="654,22",
+		shape=box,
+		tooltip="topic:/diagnostics",
+		width=1.4306];
+	t__joy	 [URL=topic_3A_joy,
+		height=0.5,
+		label="/joy",
+		pos="654,76",
+		shape=box,
+		tooltip="topic:/joy",
+		width=0.75];
+	n__move_group	 [height=0.5,
+		pos="654,184",
+		width=2.3109];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,570.59,183.94 418.58,192.99 467.15,189.51 518.3,186.39 560.37,184.41"];
+	n__youbot_driver_ros_interface	 [height=0.5,
+		pos="654,238",
+		width=4.3691];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__youbot_driver_ros_interface	 [penwidth=1,
+		pos="e,546.37,224.84 467.26,218.86 490.96,220.5 514.36,222.24 536.14,224"];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,584.07,174.17 479.62,165.72 513.5,168.13 546.3,170.73 574.07,173.24"];
+	n__arm_1_gripper_controller	 [height=0.5,
+		pos="654,130",
+		width=4.0441];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__arm_1_gripper_controller	 [penwidth=1,
+		pos="e,510.39,133.05 418.58,138.99 445.67,137.05 473.56,135.22 500.24,133.64"];
+	n__joy_node -> t__diagnostics	 [penwidth=1,
+		pos="e,602.32,23.505 302.65,32.406 377.63,30.179 513.38,26.147 592.07,23.81"];
+	n__joy_node -> t__joy	 [penwidth=1,
+		pos="e,626.93,73.29 300.17,39.319 383.14,47.945 545,64.772 616.99,72.256"];
+	n__move_group -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,467.26,203.14 584.13,193.83 553.87,196.68 516.44,199.67 477.68,202.41"];
+	n__move_group -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,418.58,175.01 570.59,184.06 529.57,182.24 478.27,179.2 428.78,175.73"];
+	n__youbot_driver_ros_interface -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,418.58,229.01 499.94,234.34 476.68,232.96 452.5,231.39 428.73,229.73"];
+	n__arm_1_gripper_controller -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,479.62,148.28 551.13,142.76 531.96,144.37 511.19,145.99 489.81,147.54"];
+}

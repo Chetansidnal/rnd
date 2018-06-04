@@ -1,0 +1,28 @@
+http://h17007.www1.hpe.com/docs/enterprise/servers/oneviewhelp/oneviewRESTAPI/content/s_overview-error-format-sdk-fusion.html
+
+https://stackoverflow.com/questions/18470136/rest-api-error-codes-return-structure
+
+
+Error format 1
+
+{
+	"name" : "node name"
+	"status":"Bool", 
+	"Error" :{
+			"code"	 :"Error code <str>",
+			"source" :"error Source <str>",
+			"message":"Error message <str>"
+			}
+}
+
+
+Error fromat2
+
+{
+	"name"	: "node name",
+	"status":"Bool",
+	"code"	:"Error code <str>",
+	"message":"Error message <str>"
+	"Time": Timestamp
+
+}

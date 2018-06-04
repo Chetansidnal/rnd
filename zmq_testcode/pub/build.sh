@@ -1,0 +1,1 @@
+g++-4.9 -std=c++14 -I/usr/local/include/jsoncpp -L/usr/local/lib/ -g -o pub  pub.cpp -lzmq

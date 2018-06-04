@@ -1,0 +1,17 @@
+http://en.cppreference.com/w/cpp/links/libs
+
+why use ZMQ 
+Conceptual Survey on Data Stream Processing Systems
+https://ieeexplore.ieee.org/abstract/document/7384369/
+
+How to design & implement a modern communication middleware based on ZeroMQ
+https://cds.cern.ch/record/2305650/
+
+A survey on reliable distributed communication
+https://www.sciencedirect.com/science/article/pii/S0164121217300651
+
+why use Pub/sup
+Confidentiality-Preserving Publish/Subscribe: A Survey
+https://dl.acm.org/citation.cfm?id=2940296
+
+

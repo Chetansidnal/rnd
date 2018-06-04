@@ -1,0 +1,10 @@
+{"nodes" :[ 
+    {
+        "name" : "Ground",
+        "connect" : "tcp://127.0.0.1:5555"
+    },
+    {
+        "name" : "Grass",
+        "connect" : "tcp://127.0.0.1:5556"
+    }]
+}

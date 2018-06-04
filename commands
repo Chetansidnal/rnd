@@ -1,0 +1,9 @@
+#1 
+
+#2 login inot youbot
+#3 do 'roscore'
+#4 'bringup' in another terminal after loging into youbot
+
+roslaunch mir_moveit_youbot_brsu_4 move_group.launch
+
+roslaunch mir_2dnav 2dnav.launch

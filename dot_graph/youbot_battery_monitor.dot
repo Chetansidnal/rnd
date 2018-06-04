@@ -1,0 +1,112 @@
+digraph graphname {
+	graph [bb="0,0,812,281",
+		compound=True,
+		rank=same,
+		rankdir=LR,
+		ranksep=0.2
+	];
+	node [label="\N"];
+	subgraph cluster_dashboard {
+		graph [bb="552,46,756,121",
+			compound=True,
+			label=dashboard,
+			lheight=0.21,
+			lp="654,109.5",
+			lwidth=1.06,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		t__dashboard_power_state		 [URL=topic_3A_dashboard_power_state,
+			height=0.5,
+			label="/dashboard/power_state",
+			pos="654,72",
+			shape=box,
+			tooltip="topic:/dashboard/power_state",
+			width=2.6111];
+	}
+	subgraph cluster_arm_1 {
+		graph [bb="8,137,488,266",
+			compound=True,
+			label=arm_1,
+			lheight=0.21,
+			lp="248,254.5",
+			lwidth=0.64,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__arm_1_arm_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_arm_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			pos="248,217",
+			shape=box,
+			tooltip="topic:arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			width=6.0833];
+		n__arm_1_gripper_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_gripper_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			pos="248,163",
+			shape=box,
+			tooltip="topic:arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			width=6.4306];
+	}
+	subgraph cluster_youbot_battery_monitor {
+		graph [bb="114,31,382,106",
+			compound=True,
+			label=youbot_battery_monitor,
+			lheight=0.21,
+			lp="248,94.5",
+			lwidth=2.40,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__youbot_battery_monitor		 [URL=_youbot_battery_monitor,
+			height=0.5,
+			label="/youbot_battery_monitor",
+			pos="248,57",
+			shape=ellipse,
+			tooltip="/youbot_battery_monitor",
+			width=3.5025];
+	}
+	t__diagnostics	 [URL=topic_3A_diagnostics,
+		height=0.5,
+		label="/diagnostics",
+		pos="654,18",
+		shape=box,
+		tooltip="topic:/diagnostics",
+		width=1.4306];
+	n__move_group	 [height=0.5,
+		pos="654,209",
+		width=2.3109];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,572.53,205.07 467.26,205.95 500.75,205.36 533.63,205.04 562.21,205.05"];
+	n__youbot_driver_ros_interface	 [height=0.5,
+		pos="654,263",
+		width=4.3691];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__youbot_driver_ros_interface	 [penwidth=1,
+		pos="e,568.85,247.82 466.37,235.02 498.81,238.78 530.71,242.72 558.71,246.45"];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,600.61,195.16 479.55,180.04 482.38,180.36 485.2,180.68 488,181 521.85,184.86 559.6,189.2 590.44,193.65"];
+	n__arm_1_gripper_controller	 [height=0.5,
+		pos="654,155",
+		width=4.0441];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__arm_1_gripper_controller	 [penwidth=1,
+		pos="e,511.29,151.33 479.62,151.74 486.81,151.63 493.95,151.53 501.01,151.45"];
+	n__youbot_battery_monitor -> t__dashboard_power_state	 [penwidth=1,
+		pos="e,559.81,68.54 370.21,61.5 427.43,63.625 495,66.134 549.74,68.166"];
+	n__youbot_battery_monitor -> t__diagnostics	 [penwidth=1,
+		pos="e,602.4,22.884 352.78,46.982 428.63,39.66 528.9,29.98 592.19,23.871"];
+	n__move_group -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,467.26,219.41 577.06,215.91 548.07,217.21 513.31,218.32 477.41,219.18"];
+	n__move_group -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,337.54,181.03 570.75,208.05 544.33,205.45 514.93,202.07 488,199 441.81,193.73 390.6,187.94 347.46,182.33"];
+	n__youbot_driver_ros_interface -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,354.35,235.01 517.73,254.01 468.02,248.87 412.24,242.44 364.43,236.31"];
+	n__arm_1_gripper_controller -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,479.62,165.12 526.77,163.81 514.78,164.19 502.38,164.55 489.77,164.87"];
+}

@@ -1,0 +1,145 @@
+digraph graphname {
+	graph [bb="0,0,930,365",
+		compound=True,
+		rank=same,
+		rankdir=LR,
+		ranksep=0.2
+	];
+	node [label="\N"];
+	subgraph cluster_gripper_controller {
+		graph [bb="126,91,370,220",
+			compound=True,
+			label=gripper_controller,
+			lheight=0.21,
+			lp="248,208.5",
+			lwidth=1.83,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		t__gripper_controller_command		 [URL=topic_3A_gripper_controller_command,
+			height=0.5,
+			label="/gripper_controller/command",
+			pos="248,171",
+			shape=box,
+			tooltip="topic:/gripper_controller/command",
+			width=3.1528];
+		t__gripper_controller_state		 [URL=topic_3A_gripper_controller_state,
+			height=0.5,
+			label="/gripper_controller/state",
+			pos="248,117",
+			shape=box,
+			tooltip="topic:/gripper_controller/state",
+			width=2.6806];
+	}
+	subgraph cluster_motor_states {
+		graph [bb="135,8,361,83",
+			compound=True,
+			label=motor_states,
+			lheight=0.21,
+			lp="248,71.5",
+			lwidth=1.31,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		t__motor_states_gripper_port		 [URL=topic_3A_motor_states_gripper_port,
+			height=0.5,
+			label="/motor_states/gripper_port",
+			pos="248,34",
+			shape=box,
+			tooltip="topic:/motor_states/gripper_port",
+			width=2.9167];
+	}
+	subgraph cluster_arm_1 {
+		graph [bb="8,228,488,357",
+			compound=True,
+			label=arm_1,
+			lheight=0.21,
+			lp="248,345.5",
+			lwidth=0.64,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__arm_1_arm_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_arm_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			pos="248,308",
+			shape=box,
+			tooltip="topic:arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			width=6.0833];
+		n__arm_1_gripper_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_gripper_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			pos="248,254",
+			shape=box,
+			tooltip="topic:arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			width=6.4306];
+	}
+	subgraph cluster_controller_manager {
+		graph [bb="540,91,768,166",
+			compound=True,
+			label=controller_manager,
+			lheight=0.21,
+			lp="654,154.5",
+			lwidth=1.97,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__controller_manager		 [URL=_controller_manager,
+			height=0.5,
+			label="/controller_manager",
+			pos="654,117",
+			shape=ellipse,
+			tooltip="/controller_manager",
+			width=2.9247];
+	}
+	t__gripper_controller_command -> n__controller_manager	 [penwidth=1,
+		pos="e,579.61,129.81 361.61,159.44 401.57,155.03 446.84,149.69 488,144 514.53,140.33 543.36,135.8 569.4,131.51"];
+	t__motor_states_gripper_port -> n__controller_manager	 [penwidth=1,
+		pos="e,571.49,105.8 312.12,52.031 379.03,67.763 485.32,89.833 561.43,103.95"];
+	t__diagnostics	 [URL=topic_3A_diagnostics,
+		height=0.5,
+		label="/diagnostics",
+		pos="878,117",
+		shape=box,
+		tooltip="topic:/diagnostics",
+		width=1.4306];
+	n__move_group	 [height=0.5,
+		pos="654,281",
+		width=2.3109];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,570.59,280.94 418.58,289.99 467.15,286.51 518.3,283.39 560.37,281.41"];
+	n__youbot_driver_ros_interface	 [height=0.5,
+		pos="654,335",
+		width=4.3691];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__youbot_driver_ros_interface	 [penwidth=1,
+		pos="e,546.37,321.84 467.26,315.86 490.96,317.5 514.36,319.24 536.14,321"];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,584.07,271.17 479.62,262.72 513.5,265.13 546.3,267.73 574.07,270.24"];
+	n__arm_1_gripper_controller	 [height=0.5,
+		pos="654,227",
+		width=4.0441];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__arm_1_gripper_controller	 [penwidth=1,
+		pos="e,510.39,230.05 418.58,235.99 445.67,234.05 473.56,232.22 500.24,230.64"];
+	n__controller_manager -> t__gripper_controller_state	 [penwidth=1,
+		pos="e,344.74,117 548.37,117 488.91,117 414.64,117 354.95,117"];
+	n__controller_manager -> t__motor_states_gripper_port	 [penwidth=1,
+		pos="e,353.04,49.386 600.27,101.44 540.35,87.042 440.77,66.112 362.91,51.258"];
+	n__controller_manager -> t__diagnostics	 [penwidth=1,
+		pos="e,826.37,117 759.5,117 778.96,117 798.69,117 816.28,117"];
+	n__move_group -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,467.26,300.14 584.13,290.83 553.87,293.68 516.44,296.67 477.68,299.41"];
+	n__move_group -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,418.58,272.01 570.59,281.06 529.57,279.24 478.27,276.2 428.78,272.73"];
+	n__youbot_driver_ros_interface -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,418.58,326.01 499.94,331.34 476.68,329.96 452.5,328.39 428.73,326.73"];
+	n__arm_1_gripper_controller -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,479.62,245.28 551.13,239.76 531.96,241.37 511.19,242.99 489.81,244.54"];
+}

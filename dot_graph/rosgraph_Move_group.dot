@@ -1,0 +1,105 @@
+digraph graphname {
+	graph [bb="0,0,812,289",
+		compound=True,
+		rank=same,
+		rankdir=LR,
+		ranksep=0.2
+	];
+	node [label="\N"];
+	subgraph cluster_arm_1 {
+		graph [bb="8,8,488,137",
+			compound=True,
+			label=arm_1,
+			lheight=0.21,
+			lp="248,125.5",
+			lwidth=0.64,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__arm_1_arm_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_arm_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			pos="248,88",
+			shape=box,
+			tooltip="topic:arm_1/arm_controller/follow_joint_trajectory/action_topics",
+			width=6.0833];
+		n__arm_1_gripper_controller_follow_joint_trajectory_action_topics		 [URL=topic_3Aarm_1_gripper_controller_follow_joint_trajectory_action_topics,
+			height=0.5,
+			label="arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			pos="248,34",
+			shape=box,
+			tooltip="topic:arm_1/gripper_controller/follow_joint_trajectory/action_topics",
+			width=6.4306];
+	}
+	subgraph cluster_move_group {
+		graph [bb="575,137,733,212",
+			compound=True,
+			label=move_group,
+			lheight=0.21,
+			lp="654,200.5",
+			lwidth=1.22,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__move_group		 [URL=_move_group,
+			height=0.5,
+			label="/move_group",
+			pos="654,163",
+			shape=ellipse,
+			tooltip="/move_group",
+			width=1.9679];
+	}
+	t__joint_states	 [URL=topic_3A_joint_states,
+		height=0.5,
+		label="/joint_states",
+		pos="248,217",
+		shape=box,
+		tooltip="topic:/joint_states",
+		width=1.4444];
+	t__joint_states -> n__move_group	 [penwidth=1,
+		pos="e,595.45,173.14 300.38,211.94 348.84,206.99 423.47,198.92 488,190 520.16,185.55 555.72,179.84 585.56,174.81"];
+	t__tf	 [URL=topic_3A_tf,
+		height=0.5,
+		label="/tf",
+		pos="248,163",
+		shape=box,
+		tooltip="topic:/tf",
+		width=0.75];
+	t__tf -> n__move_group	 [penwidth=1,
+		pos="e,583.02,163 275.2,163 334.44,163 480.7,163 572.89,163"];
+	t__tf_static	 [URL=topic_3A_tf_static,
+		height=0.5,
+		label="/tf_static",
+		pos="248,271",
+		shape=box,
+		tooltip="topic:/tf_static",
+		width=1.1111];
+	t__tf_static -> n__move_group	 [penwidth=1,
+		pos="e,626.44,179.63 288.3,270.66 336.34,269.32 419.66,263.98 488,244 535.18,230.21 585.31,203.69 617.77,184.76"];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,588.3,156.1 317.99,106.04 390.31,121.44 503.58,142.52 578.06,154.47"];
+	n__youbot_driver_ros_interface	 [height=0.5,
+		pos="654,88",
+		width=4.3691];
+	n__arm_1_arm_controller_follow_joint_trajectory_action_topics -> n__youbot_driver_ros_interface	 [penwidth=1,
+		pos="e,507.21,81.488 467.26,81.269 477.27,81.294 487.24,81.34 497.04,81.408"];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__move_group	 [penwidth=1,
+		pos="e,584.44,166.54 464.07,52.015 472.67,57.02 480.72,62.965 488,70 505.45,86.857 480.17,105.61 496,124 515.62,146.8 545.76,158.96 574.4,164.75"];
+	n__arm_1_gripper_controller	 [height=0.5,
+		pos="654,34",
+		width=4.0441];
+	n__arm_1_gripper_controller_follow_joint_trajectory_action_topics -> n__arm_1_gripper_controller	 [penwidth=1,
+		pos="e,517.93,27.591 479.62,27.311 489.17,27.351 498.63,27.412 507.92,27.494"];
+	n__move_group -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,380.45,106.03 605.96,149.75 553.39,137.98 465.78,121.06 390.51,107.8"];
+	n__move_group -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,305.37,15.98 596.22,152.57 562.14,146.57 520.73,134.73 496,106 480.17,87.61 505.45,68.857 488,52 443.14,8.6644 369.26,6.708 315.5,14.384"];
+	n__youbot_driver_ros_interface -> n__arm_1_arm_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,467.26,94.731 507.21,94.512 497.41,94.597 487.43,94.659 477.36,94.699"];
+	n__arm_1_gripper_controller -> n__arm_1_gripper_controller_follow_joint_trajectory_action_topics	 [penwidth=1,
+		pos="e,479.62,40.689 517.93,40.409 508.68,40.507 499.22,40.583 489.64,40.639"];
+}
