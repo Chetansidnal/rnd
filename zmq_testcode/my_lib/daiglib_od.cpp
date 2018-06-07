@@ -113,9 +113,10 @@ bool daiglib::sub(const char* filter, const char* connection){
 void daiglib::pub(string msg, const char* bindconn)
 {
     // Todo
+    // make separte thread
     zmq::context_t context(1);
     zmq::socket_t socket(context, ZMQ_PUB);
-    socket.bind(bindconn);
+    socket.bind(bindconn);  
     int i = 0;
     while (true)
     {

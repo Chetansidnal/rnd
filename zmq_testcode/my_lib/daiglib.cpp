@@ -66,14 +66,17 @@ Json::Value root;
         const Json::Value& nodes = root["pub"];
         for (int i = 0; i < nodes.size(); i++){
              cout << "    name: " << nodes[i]["name"].asString();
-             cout << " bind: " << nodes[i]["bind"].asString();
+             cout << " bind: " << nodes[i]["connect"].asString();
              name=(nodes[i]["name"].asString()).c_str();
-             connection=(nodes[i]["bind"].asString()).c_str();
-             pub(msg,connection);
+             connection=(nodes[i]["connect"].asString()).c_str();
+             cout <<" conection obtained" <<endl;
+        }
+            thread thread_pub(&daiglib::pub,this,msg,connection);
+             
              cout << endl;
              // call subcribers
 
-        }
+        
     } else
         cout << "json is not correct format !!" << endl;
 }
@@ -113,15 +116,20 @@ bool daiglib::sub(const char* filter, const char* connection){
 void daiglib::pub(string msg, const char* bindconn)
 {
     // Todo
-    // make separte thread
+    cout << " Iam PUB "<<endl;
+    cout << "iamm pb 2"<<endl;
     zmq::context_t context(1);
+     cout << "after context"<<endl;
     zmq::socket_t socket(context, ZMQ_PUB);
-    socket.bind(bindconn);  
+     cout << "after scoket"<<endl;
+    socket.bind("tcp://127.0.0.1:5555");
+    cout << " before while" <<endl;
     int i = 0;
     while (true)
     {
-
-        std::string text = msg + std::to_string(i);
+        cout << " in while"<< endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::string text = gstatus + std::to_string(i);
         std::cout << text << ":" << i;
         zmq::message_t message(text.size());
         memcpy(message.data(), text.c_str(), text.size());
