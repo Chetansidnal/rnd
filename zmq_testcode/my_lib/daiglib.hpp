@@ -12,10 +12,11 @@ class daiglib
 
             void publish_status(string msg);
            // void registernode();
-            string update(string gstatus);
+            void update(string gstatus);
+            void check();
     private:
             string getstatus(string gstatus);
-            bool sub(const char *filter, const char *connection);
+            bool sub(const char *filter, string connection);
             void pub(string msg, const char *bindconn);
 };
 

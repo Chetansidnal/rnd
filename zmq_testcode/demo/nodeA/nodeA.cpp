@@ -10,8 +10,11 @@ int main()
     while (true)
     {
         status = d.check_dependent();
+
         cout << "I am NodeA:" << status << endl;
+         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 
+    cout << " Node Finished"<<endl;
     return 0;
 }

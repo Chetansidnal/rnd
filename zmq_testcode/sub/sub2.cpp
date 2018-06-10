@@ -11,15 +11,17 @@ void sub3();
 int main()
 {
   thread thread1(sub3);
-  zmq::context_t context(1);
-  zmq::socket_t socket(context, ZMQ_SUB);
-  const char *filter = "welcome ";
-  socket.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
- socket.connect("tcp://127.0.0.1:5555");
+ 
   int i = 0;
+  
   while (true)
   {
-     
+     zmq::context_t context(1);
+  zmq::socket_t socket(context, ZMQ_SUB);
+  const char *filter = "nodeC ";
+  const char *connection = "tcp://127.0.0.1:5556";
+  socket.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
+  socket.connect(connection);
     if (socket.connected())
     {
       cout << "online:" << i << endl;
@@ -40,8 +42,8 @@ int main()
     std::cout << "Message received!" << static_cast<int>(i) << std::endl;
     std::cout << message << std::endl;
     i = i + 1;
-   // socket.disconnect("tcp://127.0.0.1:5555");
-   // socket.close();
+    socket.disconnect("tcp://127.0.0.1:5556");
+    socket.close();
   }
 
   return 0;
@@ -51,13 +53,14 @@ void sub3()
 {
   zmq::context_t context(1);
   zmq::socket_t socket(context, ZMQ_SUB);
-  const char *filter = "Hello ";
+  const char *filter = "nodeB ";
   socket.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
-  socket.connect("tcp://127.0.0.1:5555");
+  const char *connection = "tcp://127.0.0.1:5555";
+  socket.connect(connection);
   int i = 0;
   while (true)
   {
-    
+
     if (socket.connected())
     {
       cout << "online:" << i << endl;
@@ -79,7 +82,7 @@ void sub3()
     std::cout << message << std::endl;
     i = i + 1;
     // socket.disconnect("tcp://127.0.0.1:5555");
-   // socket.close();
+    // socket.close();
   }
 
   //   return 0;

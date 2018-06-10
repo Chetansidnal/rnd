@@ -9,7 +9,7 @@ status = "nodeB ON";
 d.publish_status(status);
 int i=0;
 while(true) {
-status= status +  to_string(i);
+status= "nodeB ON" +  to_string(i);
  std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 d.update(status);
 i++;
