@@ -10,7 +10,7 @@ void sub3();
 
 int main()
 {
-  thread thread1(sub3);
+  //thread thread1(sub3);
  
   int i = 0;
   
@@ -18,8 +18,8 @@ int main()
   {
      zmq::context_t context(1);
   zmq::socket_t socket(context, ZMQ_SUB);
-  const char *filter = "nodeC ";
-  const char *connection = "tcp://127.0.0.1:5556";
+  const char *filter = "nodeA ";
+  const char *connection = "tcp://127.0.0.1:5557";
   socket.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
   socket.connect(connection);
     if (socket.connected())
@@ -42,7 +42,7 @@ int main()
     std::cout << "Message received!" << static_cast<int>(i) << std::endl;
     std::cout << message << std::endl;
     i = i + 1;
-    socket.disconnect("tcp://127.0.0.1:5556");
+    socket.disconnect("tcp://127.0.0.1:5557");
     socket.close();
   }
 

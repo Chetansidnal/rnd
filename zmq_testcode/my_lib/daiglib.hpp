@@ -16,7 +16,7 @@ class daiglib
             void check();
     private:
             string getstatus(string gstatus);
-            bool sub(const char *filter, string connection);
+            bool sub(string filter, string connection);
             void pub(string msg, const char *bindconn);
 };
 

@@ -29,14 +29,14 @@ string status_msg;
      ifstream ifile("config.json");
     //  const char *connection;
       string connection;
-     const char *name;
+      string name;
      bool isJsonOK = (ifile != NULL && reader.parse(ifile, root));
      if (isJsonOK) {
         const Json::Value& nodes = root["nodes"];
         for (int i = 0; i < nodes.size(); i++){
              cout << "    name: " << nodes[i]["name"].asString();
              cout << " connect: " << nodes[i]["connect"].asString();
-             name=(nodes[i]["name"].asString()).c_str();
+             name=(nodes[i]["name"].asString());
              connection=nodes[i]["connect"].asString();
             //  connection=(nodes[i]["connect"].asString()).c_str();
                 cout <<"connection : "<<connection<<endl;
@@ -95,7 +95,7 @@ void daiglib::check(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
-bool daiglib::sub(const char *filter, string connection){
+bool daiglib::sub(string filter, string connection){
     /*
      connects with publisher and check for the messages returns true flase if alive or dead.
     */
@@ -106,12 +106,12 @@ bool daiglib::sub(const char *filter, string connection){
     zmq::socket_t socket(context, ZMQ_SUB);
     // const char* filter = sfilter;
     cout << "before sub socket"<<endl;
-    socket.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
+    socket.setsockopt(ZMQ_SUBSCRIBE, filter.c_str(), strlen(filter.c_str()));
     cout << "after sub socket"<<endl;
     const char*  conn = connection.c_str();
     cout <<"connection :"<< connection<<endl;
     cout <<"conn :"<< conn<<endl;
-    socket.connect(conn);  //"tcp://127.0.0.1:5555"
+    socket.connect(connection.c_str());  //"tcp://127.0.0.1:5555"
     cout << "after sub connection"<<endl;
     int i=0;
     //while(true) {
@@ -132,7 +132,7 @@ bool daiglib::sub(const char *filter, string connection){
         std::cout << "Message received!"<<static_cast<int>(i)<< std::endl;
         std::cout << message << std::endl;
         i=i+1;
-        socket.disconnect(conn);
+        socket.disconnect(connection.c_str());
         socket.close();
         context.close();
         // zmq_ctx_destroy(context);
