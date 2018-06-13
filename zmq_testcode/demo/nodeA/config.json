@@ -1,9 +1,5 @@
 {"nodes" :[ 
     {
-        "name" : "nodeB",
-        "connect" : "tcp://127.0.0.1:5555"
-    },
-    {
         "name" : "nodeC",
         "connect" : "tcp://127.0.0.1:5556"
     }],

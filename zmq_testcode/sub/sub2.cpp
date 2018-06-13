@@ -10,7 +10,7 @@ void sub3();
 
 int main()
 {
-  thread thread1(sub3);
+ // thread thread1(sub3);
  
   int i = 0;
   

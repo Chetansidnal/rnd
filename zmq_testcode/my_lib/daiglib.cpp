@@ -29,19 +29,50 @@ string status_msg;
      ifstream ifile("config.json");
     //  const char *connection;
       string connection;
-     const char *name;
+      string name;
      bool isJsonOK = (ifile != NULL && reader.parse(ifile, root));
      if (isJsonOK) {
         const Json::Value& nodes = root["nodes"];
         for (int i = 0; i < nodes.size(); i++){
              cout << "    name: " << nodes[i]["name"].asString();
              cout << " connect: " << nodes[i]["connect"].asString();
-             name=(nodes[i]["name"].asString()).c_str();
+             name=(nodes[i]["name"].asString());
              connection=nodes[i]["connect"].asString();
             //  connection=(nodes[i]["connect"].asString()).c_str();
                 cout <<"connection : "<<connection<<endl;
-             bool status = sub(name,connection);
-
+             bool status = true; //sub(name,connection);
+                // check(name,connection);
+                /*****************/
+                 zmq::context_t context(1);
+        zmq::socket_t socket(context, ZMQ_SUB);
+        const char *filter = "nodeC ";
+        //const char *connection = "tcp://127.0.0.1:5556";
+        socket.setsockopt(ZMQ_SUBSCRIBE, name.c_str(), strlen(name.c_str()));
+        socket.connect(connection.c_str());
+        if (socket.connected())
+        {
+            cout << "online:" << i << endl;
+        }
+        else
+        {
+            cout << "offline:" << i << endl;
+        }
+        zmq::message_t request;
+        //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        socket.recv(&request);
+        cout << "after request \n";
+        std::string message = std::string(static_cast<char *>(request.data()), request.size());
+        if (message == "")
+        {
+            std::cout << "sub: is offline \n";
+        }
+        std::cout << "Message received!" << static_cast<int>(i) << std::endl;
+        std::cout << message << std::endl;
+        i = i + 1;
+        socket.disconnect(connection.c_str());
+        socket.close();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                /*********************/
              if (!status){ 
                  cout <<" Name : "<< nodes[i]["name"].asString()<<"------Not Working"<<endl;
                 // cout <<" Name : "<< nodes[i]["connect"].asString()<<endl;
@@ -88,12 +119,41 @@ Json::Value root;
     } else
         cout << "json is not correct format !!" << endl;
 }
-void daiglib::check(){
-    while (true){
-    cout <<"check "<<endl;
-     cout <<"check 2"<<endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
+void daiglib::check(const char *filter, string connection)
+{
+    int i =0;
+        cout << "check " << endl;
+        cout << "check 2" << endl;
+        zmq::context_t context(1);
+        zmq::socket_t socket(context, ZMQ_SUB);
+        //const char *filter = "nodeC ";
+        //const char *connection = "tcp://127.0.0.1:5556";
+        socket.setsockopt(ZMQ_SUBSCRIBE, filter, strlen(filter));
+        socket.connect(connection.c_str());
+        if (socket.connected())
+        {
+            cout << "online:" << i << endl;
+        }
+        else
+        {
+            cout << "offline:" << i << endl;
+        }
+        zmq::message_t request;
+        //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        socket.recv(&request);
+        cout << "after request \n";
+        std::string message = std::string(static_cast<char *>(request.data()), request.size());
+        if (message == "")
+        {
+            std::cout << "sub: is offline \n";
+        }
+        std::cout << "Message received!" << static_cast<int>(i) << std::endl;
+        std::cout << message << std::endl;
+        i = i + 1;
+        socket.disconnect("tcp://127.0.0.1:5556");
+        socket.close();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    
 }
 bool daiglib::sub(const char *filter, string connection){
     /*
@@ -126,8 +186,9 @@ bool daiglib::sub(const char *filter, string connection){
         socket.recv(&request);  // ZMQ_NOBLOCK flag for not to wait.
         cout<<"after request \n";
         std::string message = std::string(static_cast<char*>(request.data()), request.size());
-        if(message!=""){std::cout<<"sub: is online \n";
-            status=true;
+        status=true;
+        if(message ==""){std::cout<<"sub: is offline \n";
+            status=false;
             }
         std::cout << "Message received!"<<static_cast<int>(i)<< std::endl;
         std::cout << message << std::endl;

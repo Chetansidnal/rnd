@@ -13,7 +13,7 @@ class daiglib
             void publish_status(string msg);
            // void registernode();
             void update(string gstatus);
-            void check();
+            void check(const char *filter, string connection);
     private:
             string getstatus(string gstatus);
             bool sub(const char *filter, string connection);
