@@ -63,29 +63,36 @@ string daiglib::check_dependent()
             //cout << "connection : " << connection << endl;
              cout << " ia m in check depednt "<<endl;
             Json::Value rcv_root = sub(name, connection);
-            Json::StyledWriter writer;
-            string recive_string =  writer.write(rcv_root);
-            cout<<"name"<<name<<"----"<<recive_string<<endl;
-            string self_jsonstr =  writer.write(rcv_root);
-            cout<<"self_jsonstr"<<"----"<<self_jsonstr<<endl;
+
+
+            // Json::StyledWriter writer;
+            // string recive_string =  writer.write(rcv_root);
+            // cout<<"name"<<name<<"----"<<recive_string<<endl;
+            // string self_jsonstr =  writer.write(self_json);
+            // cout<<"self_jsonstr"<<"----"<<self_jsonstr<<endl;
 
             if (rcv_root.empty()){
                 if (self_json.empty()){
+                    cout <<" if slefjson empty"<<endl;
                     self_json["nodes"].append(buildErrorMsg(name));
+                    cout <<" if slefjson after appending"<<endl;
                 }
                 if (!self_json.empty())
-                    {
+                    {  
+                         cout <<" if slefjson NOT empty"<<endl;
+                         bool writeFlag = true;
                         for(int k =0; k<self_json["nodes"].size(); k++){
-                            if (self_json["nodes"][k]["name"]==name) {
+                              
+                            if (self_json["nodes"][k]["name"]==nodes[i]["name"]) {
+                                cout <<" if slefjson NOT empty Matched updating"<<endl;
                                 self_json["nodes"][k]["status"]=false;
-
-                                break;
+                                writeFlag = false;    
+                                
 
                             }
                             
-                            if (k==self_json["nodes"].size())
-                            self_json["nodes"].append(buildErrorMsg(name));
                         }
+                        if (writeFlag){self_json["nodes"].append(buildErrorMsg(name));}
                         
                     }
                 // if (!self_json.empty() && self_json["nodes"].size()==i+1)
@@ -281,7 +288,7 @@ void daiglib::pub(string msg, string bindconn)
 
         string sendstring = writer.write(self_json);
         
-        cout <<"self_status : "<<self_status <<endl;
+        cout <<"self_status : "<<sendstring <<endl;
         //std::string text = self_status + std::to_string(i);
         //std::cout << text << ":" << i;
         zmq::message_t message(sendstring.size());
@@ -332,7 +339,7 @@ Json::Value daiglib::buildOwnMsg(string name)
    // convert now to string form
    char* dt = ctime(&now);
 
-   cout << "The local date and time is: " << dt << endl;
+  // cout << "The local date and time is: " << dt << endl;
 
     //string nodeName = NAME;
    string jsonstr = "{";
