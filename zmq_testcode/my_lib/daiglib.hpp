@@ -2,6 +2,10 @@
 // #define DIAGLIB_HPP
 // #endif
 #include <iostream>
+#include <jsoncpp/json/value.h>
+#include <jsoncpp/json/reader.h>
+#include <jsoncpp/json/writer.h>
+
 using namespace std;
 
 class daiglib
@@ -12,11 +16,13 @@ class daiglib
 
             void publish_status(string msg);
            // void registernode();
-            void update(string gstatus);
+            void update(string code, string msg);
             void check();
     private:
             string getstatus(string gstatus);
-            bool sub(string filter, string connection);
-            void pub(string msg, const char *bindconn);
+            Json::Value sub(string filter, string connection);
+            void pub(string msg, string bindconn);
+            Json::Value buildErrorMsg(string name);
+            Json::Value buildOwnMsg(string name);
 };
 
