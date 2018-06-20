@@ -12,12 +12,13 @@ int main()
     int i=0;
     while (true)
     {
-      //  status = d.check_dependent();
-        status = "nodeA ON" + to_string(i);
+      status = d.check_dependent();
+       string statusA = "nodeA ON" + to_string(i);
+       string code = "4444";
         cout << "I am NodeA:" << status << endl;
          std::this_thread::sleep_for(std::chrono::milliseconds(1000));
          cout << "main sleep :" <<to_string(i);
-          //d.update(status);
+          d.update(code ,statusA);
           i++;
           sample(d);
     }
@@ -29,6 +30,7 @@ int main()
 void sample(daiglib& d ){
     cout<<"i am smaple"<<endl;
     string status = "nodeA ON SAMPLE";
+    string code = "5555";
      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    d.update(status);
+    d.update(code , status);
 }
