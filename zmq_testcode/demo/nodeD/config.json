@@ -1,0 +1,15 @@
+{"nodes" :[ 
+    {
+        "name" : "nodeA",
+        "connect" : "tcp://127.0.0.1:5557"
+    },
+    {
+        "name" : "nodeC",
+        "connect" : "tcp://127.0.0.1:5556"
+    }],
+ "pub":[
+     {
+        "name" : "nodeD",
+        "connect": "tcp://127.0.0.1:5558"
+     }]
+}

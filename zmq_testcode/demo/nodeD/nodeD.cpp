@@ -7,15 +7,15 @@ int main()
 
     daiglib d;
     string status;
-    status = "nodeA ON";
+    status = "nodeD ON";
     d.publish_status(status);
     int i=0;
     while (true)
     {
       status = d.check_dependent();
-       string statusA = "nodeA ON" + to_string(i);
-       string code = "4444";
-        cout << "I am NodeA:" << status << endl;
+       string statusA = "nodeD ON" + to_string(i);
+       string code = "44DD";
+        cout << "I am NodeD:" << status << endl;
          std::this_thread::sleep_for(std::chrono::milliseconds(1000));
          cout << "main sleep :" <<to_string(i);
           d.update(code ,statusA);
@@ -29,8 +29,8 @@ int main()
 
 void sample(daiglib& d ){
     cout<<"i am smaple"<<endl;
-    string status = "nodeA ON SAMPLE";
-    string code = "5555";
+    string status = "nodeD ON SAMPLE";
+    string code = "5DDF";
      std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     d.update(code , status);
 }
