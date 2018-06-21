@@ -14,10 +14,11 @@ int main()
     while (true)
     {
         status = "nodeC ON" + to_string(i);
+        string code = "1111";
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
         cout << "main sleep :" <<to_string(i);
-         d.update(status);
+         d.update(code,status);
         i++;
     }
     return 0;

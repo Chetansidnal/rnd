@@ -1,0 +1,16 @@
+{"nodes" :[ 
+    {
+        "name" : "Ground",
+        "status" : true,
+        "code" : "0000" ,
+        "message" : "Any error/state message",
+        "timestamp" : "12:45:12 12:12:12"
+    },
+    {
+        "name" : "Grass",
+        "status" : true,
+        "code" : "0000" ,
+        "message" : "Any error/state message",
+        "timestamp" : "12:45:12 12:12:12"
+    }]
+}
