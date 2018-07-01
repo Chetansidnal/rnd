@@ -1,0 +1,4 @@
+1) The tex files in the sections should use "../diagrams" etc to address the folders containing images.
+2) Keep in mind the syntax for tagging sections and then referencing them from elsewhere:
+tagging: "\label{sec:intro}"
+referencing: "Sections~\ref{sec:conclusions}"

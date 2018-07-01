@@ -5,9 +5,10 @@ using namespace std;
 int main()
 {
     daiglib d;
+    string path = "config.json";
     string status;
     status = "nodeB ON";
-    d.publish_status(status);
+    d.start_publishing(status,path);
     int i = 0;
     while (true)
     {

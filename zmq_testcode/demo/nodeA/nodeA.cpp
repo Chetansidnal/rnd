@@ -7,12 +7,13 @@ int main()
 
     daiglib d;
     string status;
+    string path = "config.json";
     status = "nodeA ON";
-    d.publish_status(status);
+    d.start_publishing(status,path);
     int i=0;
     while (true)
     {
-      status = d.check_dependent();
+      status = d.check_dependent(path);
        string statusA = "nodeA ON" + to_string(i);
        string code = "4444";
         cout << "I am NodeA:" << status << endl;

@@ -12,9 +12,9 @@ class daiglib
 {
    public: 
             daiglib();
-            string check_dependent();
+            string check_dependent(string);
 
-            void publish_status(string msg);
+            void start_publishing(string msg, string path);
            // void registernode();
             void update(string code, string msg);
             void check();

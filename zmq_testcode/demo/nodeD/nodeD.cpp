@@ -4,15 +4,15 @@ using namespace std;
 void sample(daiglib&);
 int main()
 {
-
+    string path = "config.json";
     daiglib d;
     string status;
     status = "nodeD ON";
-    d.publish_status(status);
+    d.start_publishing(status,path);
     int i=0;
     while (true)
     {
-      status = d.check_dependent();
+      status = d.check_dependent(path);
        string statusA = "nodeD ON" + to_string(i);
        string code = "44DD";
         cout << "I am NodeD:" << status << endl;

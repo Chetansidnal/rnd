@@ -5,10 +5,11 @@ using namespace std;
 int main()
 {
     daiglib d;
+    string path = "config.json";
     string status;
     status = "nodeC ON";
     cout << "Nodec " << endl;
-    d.publish_status(status);
+    d.start_publishing(status, path);
     int i = 0;
     cout << "main before while";
     while (true)
