@@ -32,7 +32,7 @@ void daiglib::update(string code, string msg)
     self_code = code;
     self_timestamp = dt;
 }
-string daiglib::check_dependent()
+string daiglib::check_dependent(string path)
 {
     /*  This function will read from the json file and create object of sub , 
     checks weather all sub are responding. 
@@ -42,7 +42,7 @@ string daiglib::check_dependent()
     Json::Value root;
     Json::Reader reader;
     const Json::Value defValue; //used for default reference
-    ifstream ifile("config.json");
+    ifstream ifile(path);
     string connection;
     string name;
     bool isJsonOK = (ifile != NULL && reader.parse(ifile, root));
@@ -138,13 +138,13 @@ string daiglib::check_dependent()
     return status_msg;
 }
 
-void daiglib::publish_status(string msg)
+void daiglib::start_publishing(string msg, string path)
 {
     //read json file
     Json::Value root;
     Json::Reader reader;
     const Json::Value defValue; //used for default reference
-    ifstream ifile("config.json");
+    ifstream ifile(path);
     string connection;
     const char *name;
     bool isJsonOK = (ifile != NULL && reader.parse(ifile, root));
@@ -189,16 +189,16 @@ Json::Value daiglib::sub(string filter, string connection)
     /*
      connects with publisher and check for the messages returns true flase if alive or dead.
     */
-    cout << " ia m in sub " << endl;
+    // cout << " ia m in sub " << endl;
     bool status = false;
     zmq::context_t context(1);
-    cout << " ia m in sub after context " << endl;
+    // cout << " ia m in sub after context " << endl;
     zmq::socket_t socket(context, ZMQ_SUB);
-    cout << " ia m in sub after scoket" << endl;
+    // cout << " ia m in sub after scoket" << endl;
     int linger = 0;
     string filter2 = "{";
     socket.setsockopt(ZMQ_SUBSCRIBE, filter2.c_str(), strlen(filter2.c_str()));
-    cout << " ia m in sub after scoket option " << endl;
+    // cout << " ia m in sub after scoket option " << endl;
     const char *conn = connection.c_str();
     socket.connect(connection.c_str()); //"tcp://127.0.0.1:5555"
     int i = 0;
@@ -212,7 +212,7 @@ Json::Value daiglib::sub(string filter, string connection)
     std::string message = std::string(static_cast<char *>(request.data()), request.size());
     if (message != "")
     {
-        std::cout << filter << ": is online \n";
+        // std::cout << filter << ": is online \n";
         status = true;
     }
 

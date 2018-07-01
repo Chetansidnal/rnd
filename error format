@@ -19,10 +19,13 @@ Error format 1
 Error fromat2
 
 {
-	"name"	: "node name",
-	"status":"Bool",
-	"code"	:"Error code <str>",
-	"message":"Error message <str>"
-	"Time": Timestamp
+	"name"		:"node name",
+	"status"	:"Bool",
+	"code"		:"Error code <str>",
+	"message"	:"Error message <str>"
+	"Timestamp"	: Timestamp
 
 }
+
+
+

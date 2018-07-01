@@ -1,0 +1,69 @@
+% document definition 
+\documentclass[a4paper,11pt]{article}
+ 
+% create the following file in the input from the template
+\input{sections/PaperInformation}
+\input{sections/Preamble}
+\input{sections/Macro}
+
+
+
+\begin{document}
+
+\singlespacing
+% create title template
+\pagenumbering{gobble}
+\input{sections/Title}
+
+\onehalfspacing
+\pagenumbering{roman}
+% create declaration
+\input{sections/Declaration}
+
+% create abstract template 
+\input{sections/abstract}
+
+% table of contents, figures and tables
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\input{sections/00Abbreviations}
+\newpage
+
+\pagenumbering{arabic}
+% document content begin here
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\rightmark}
+\rhead{\leftmark}
+\lfoot{\footnotesize{\PaperSubject}}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{1pt}
+\input{sections/01Introduction}
+\newpage
+\input{sections/02ProblemDescription}
+\newpage
+%\input{sections/03Concept}
+\newpage
+\input{sections/03RelatedWork}
+\newpage
+\input{sections/04Approach}
+\newpage
+\input{sections/05ExperimentalEval}
+\newpage
+\input{sections/06Conclusions}
+\newpage
+\input{sections/07FutureWork}
+\newpage
+
+% create bibtex document
+\input{BibSetting}
+\newpage
+\input{sections/Appendix}
+
+\end{document}
+
+
